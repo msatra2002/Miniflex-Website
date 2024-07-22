@@ -52,6 +52,15 @@
         <?php else: ?>
             <p>Movie not found.</p>
         <?php endif; ?>
+        <form action="/omdb/rate" method="post" class="mb-3">
+                <div class="btn-group btn-group-custom" role="group" aria-label="Basic example">
+                    Rate This Movie:  
+                    <?php for ($i = 1; $i <= 5; $i++) { ?>
+                        <input type="hidden" name="rating" value="<?php echo $i; ?>">
+                        <button type="submit" class="btn btn-primary"><?php echo $i; ?></button>
+                    <?php } ?>
+                </div>
+            </form>
         <a href="/omdb" class="btn btn-primary">Search Again</a>
     </div>
 </body>

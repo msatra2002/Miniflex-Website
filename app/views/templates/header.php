@@ -23,7 +23,7 @@
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <?php
-                    unset($_SESSION['auth']);
+                    // unset($_SESSION['auth']);
                     //$_SESSION['auth'] =1;
                     if (!isset($_SESSION['auth'])) {
                         echo "<li class='nav-item'>";

@@ -52,7 +52,7 @@ class Movie {
 
                     
                        //fix up some of the ai review punctuation issues. extra commas and stars.
-                        $formattedReview = str_replace("Array", ucwords($movie_title), $reviewText);
+                        $formattedReview = str_replace("Array", ucwords($movie_name['Title']), $reviewText);
 
                       
                         $cleanReview = strip_tags($formattedReview);
@@ -70,6 +70,23 @@ class Movie {
 
 
         }
+    }
+
+    public function pushRating($rating){
+        $db = db_connect();
+        $stmt= $db-> prepare("INSERT INTO omdb (usermovie, movie_title, rating) VALUES (:user_id, :movie_id, :rating)");
+          $stmt->bindValue(":user_id",$_SESSION['userid']);
+          $stmt->bindValue(":rating",$rating);
+        $stmt->bindValue(":movie_id",$_SESSION['movie_name']);
+
+
+        
+        $stmt -> execute();
+        header('Location: /omdb/result');
+    }
+
+    public function pullAvgRating($movie_name){
+        
     }
 }
 ?>

@@ -10,6 +10,7 @@ class Omdb extends Controller {
     public function search() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['movie_name'])) {
             $movieName = $_REQUEST['movie_name'];
+            $_SESSION['movie_name'] = $movieName;
             $omdb = $this->model('Movie');
 
             $movie = $omdb->getMovie($movieName);
@@ -21,6 +22,16 @@ class Omdb extends Controller {
             header('Location: /omdb');
             exit;
         }
+    }
+
+    public function rate($rating = ''){
+        $rating = $_REQUEST['rating'];
+
+        $omdb = $this->model('Movie');
+
+        $movie = $omdb->pushRating($rating);
+
+        $this -> view( 'omdb/result', ['movie' => $movie]);
     }
 }
 

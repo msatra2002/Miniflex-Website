@@ -33,6 +33,9 @@
                         echo "<li class='nav-item'>";
                         echo "<a class='nav-link disabled' style='color: white;'>hello, " . htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8') . "!</a>";
                         echo "</li>";
+                        echo "<li class='nav-item'>";
+                        echo "<a class='btn btn-danger' href='/logout'>logout</a>";
+                        echo "</li>";
                     }
                     ?>
                 </ul>

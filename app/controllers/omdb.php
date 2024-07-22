@@ -30,8 +30,10 @@ class Omdb extends Controller {
         $rating = $_REQUEST['rating'];
 
         $omdb = $this->model('Movie');
+        
 
         $movie = $omdb->pushRating($rating);
+        $movie = $omdb->getMovie($_SESSION['movie_name']);
 
         $this -> view( 'omdb/result', ['movie' => $movie]);
     }

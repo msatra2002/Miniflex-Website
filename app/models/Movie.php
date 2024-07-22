@@ -108,6 +108,39 @@ class Movie {
 
         $_SESSION['avgRating'] = $avg;
         }
+    public function getUserRatedMovies() {
+        try {
+            $db = db_connect();
+            $stmt = $db->prepare("SELECT movie_title, rating FROM omdb WHERE usermovie = :user_id");
+            $stmt->bindValue(":user_id", $_SESSION['userid']);
+            $stmt->execute();
+
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Post-process to remove duplicates, keeping the highest rating for each movie title
+            $uniqueMovies = [];
+            foreach ($rows as $row) {
+                $title = $row['movie_title'];
+                $rating = $row['rating'];
+
+                if (!isset($uniqueMovies[$title]) || $uniqueMovies[$title] < $rating) {
+                    $uniqueMovies[$title] = $rating;
+                }
+            }
+
+            // Transform the associative array back to an indexed array
+            $result = [];
+            foreach ($uniqueMovies as $title => $rating) {
+                $result[] = ['movie_title' => $title, 'rating' => $rating];
+            }
+
+            return $result;
+        } catch (PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+            return [];
+        }
+    }
+
 
 
         

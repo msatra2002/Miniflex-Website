@@ -3,107 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <title>Floating Label Input</title>
-<style>
-	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap");
+	<style>
+			@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap");
 
-	*,
-	*::before,
-	*::after {
-		margin: 0;
-		padding: 0;
+			*,
+			*::before,
+			*::after {
+					box-sizing: border-box;
+			}
 
-	}
-		/* Basic styling for the body */
-		body {
-				font-family: 'Poppins', sans-serif;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				height: 100vh;
-				margin: 0;
-				
-		}
+			body {
+					font-family: 'Poppins', sans-serif;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					height: 100vh;
+					margin: 0;
+					background-color: #141414; /* Dark background */
+					color: #fff; /* Light text color */
+			}
 
-		/* Styling for the container of the input field */
-		.form-field {
-				position: relative;
-				margin: 30px 0;
-		}
+			.form-field {
+					position: relative;
+					margin: 30px 0;
+					width: 300px; /* Adjusted width for better appearance */
+			}
 
-		/* Style adjustments for the input field */
-		.form-field input {
-				width: 100%;
-				padding: 10px;
-				font-size: 16px;
-				border: 2px solid #ccc;
-				border-radius: 5px;
-				transition: border-color 0.3s;
-				outline: none; /* Removes the default focus highlight */
-		}
+			.form-field input {
+					width: 100%;
+					padding: 10px;
+					font-size: 16px;
+					border: 2px solid #333; /* Darker border */
+					border-radius: 5px;
+					background-color: #333; /* Darker background */
+					color: #fff; /* Light text color */
+					transition: border-color 0.3s;
+					outline: none;
+			}
 
-		/* Focus state for the input field */
-		.form-field input:focus {
-				border-color: #4CAF50; /* Changes border color on focus */
-		}
+			.form-field input:focus {
+					border-color: #e50914; /* Netflix red on focus */
+			}
 
-		/* Label styling */
-		.form-field label {
-				position: absolute;
-				top: 0;
-				left: 0;
-				padding: 10px;
-				font-size: 16px;
-				color: #999;
-				pointer-events: none; /* Allows click to go through the label */
-				transition: all 0.3s ease;
-		}
+			.form-field label {
+					position: absolute;
+					top: 0;
+					left: 0;
+					padding: 10px;
+					font-size: 16px;
+					color: #999;
+					pointer-events: none;
+					transition: all 0.3s ease;
+			}
 
-		/* Moving the label up when the input is focused or filled */
-		.form-field input:focus + label,
-		.form-field input:not(:placeholder-shown) + label {
-				top: -25px;
-				left: 0;
-				
-				padding: 0 5px;
-				font-size: 12px;
-				color: #4CAF50;
-		}
-	/* for the cool button */
-	/* Styling for the button */
-	/* Basic styling for button */
-	.button {
-		position: relative;
-		padding: 1em 1.5em;
-		border: none;
-		background-color: transparent;
-		cursor: pointer;
-		outline: none;
-		font-size: 18px;
-		margin: 1em 0.8em;
-	}
-	.button.type2 {
-		color: #4CAF50;
-	}
-	.button.type2.type2:after, .button.type2.type2:before {
-		content: "";
-		display: block;
-		position: absolute;
-		top: 100%;
-		left: 0;
-		width: 100%;
-		height: 2px;
-		background-color: #4CAF50;
-		transition: all 0.3s ease;
-		transform: scale(0.85);
-	}
-	.button.type2.type2:hover:before {
-		top: 0;
-		transform: scale(1);
-	}
-	.button.type2.type2:hover:after {
-		transform: scale(1);
-	}
-</style>
+			.form-field input:focus + label,
+			.form-field input:not(:placeholder-shown) + label {
+					top: -25px;
+					left: 0;
+					padding: 0 5px;
+					font-size: 12px;
+					color: #e50914; /* Netflix red */
+			}
+
+			.button {
+					position: relative;
+					padding: 1em 1.5em;
+					border: none;
+					background-color: #e50914; /* Netflix red */
+					color: #fff;
+					cursor: pointer;
+					outline: none;
+					font-size: 18px;
+					margin: 1em 0.8em;
+					border-radius: 5px;
+					transition: background-color 0.3s ease;
+			}
+
+			.button:hover {
+					background-color: #f40612; /* Lighter red on hover */
+			}
+
+			.container {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+			}
+
+			a {
+					color: #e50914; /* Netflix red */
+					text-decoration: none;
+					margin-top: 15px;
+			}
+
+			a:hover {
+					text-decoration: underline;
+			}
+	</style>
 </head>
 <body>
 	<?php

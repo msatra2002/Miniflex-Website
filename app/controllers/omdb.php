@@ -1,19 +1,26 @@
 <?php
 
-class omdb extends Controller {
+class Omdb extends Controller {
 
     public function index() {
-        $query_url = "http://www.omdbapi.com/?apikey=".$_ENV['omdb_Key']."&t=the+matrix&y=1999";
+        // Display the search form
+        $this->view('omdb/index');
+    }
 
-            $json = file_get_contents($query_url);
-            $phpObj = json_decode($json);
-            $movie =  (array) $phpObj;
+    public function search() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['movie_name'])) {
+            $movieName = $_REQUEST['movie_name'];
+            $movie = $this->model('Movie');
+            
+            $movie = $movie->getMovie($movieName);
 
-            echo "<pre>";
-            print_r ($movie);
-            die;
-
-
-        
+            // Pass data to the view
+            $this->view('omdb/result', ['movie' => $movie]);
+        } else {
+            // Redirect to the index page if not a POST request
+            header('Location: /');
+            exit;
+        }
     }
 }
+

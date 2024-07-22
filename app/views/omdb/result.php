@@ -61,6 +61,10 @@
                     <?php } ?>
                 </div>
             </form>
+        <h1>   
+        Our users average rating for this movie is: <?php echo htmlspecialchars($_SESSION['avgRating']);?>
+        </h1>
+            <br>   
         <a href="/omdb" class="btn btn-primary">Search Again</a>
     </div>
 </body>

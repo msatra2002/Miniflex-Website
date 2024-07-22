@@ -85,8 +85,33 @@ class Movie {
         header('Location: /omdb/result');
     }
 
-    public function pullAvgRating($movie_name){
+    public function pullAvgRating(){
+        $db = db_connect();
+            $stmt = $db -> prepare("SELECT rating FROM omdb WHERE movie_title = :movie_title");
+            $stmt -> bindValue(':movie_title', $_SESSION['movie_name']);
+            $stmt -> execute();
+            $rows = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+            $sum = 0;
+            $count = 0;
+            foreach( $rows as $row){
+                $count ++;
+                $sum += $row['rating'];
+            }
+            if($count != 0){
+                $avg = $sum / $count;
+            }else{
+                $avg = NULL;
+            }
+            
+
+
+        $_SESSION['avgRating'] = $avg;
+        }
+
+
         
-    }
+        
+    
 }
 ?>

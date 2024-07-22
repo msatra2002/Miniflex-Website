@@ -13,8 +13,10 @@ class Omdb extends Controller {
             $_SESSION['movie_name'] = $movieName;
             $omdb = $this->model('Movie');
 
+            $movie = $omdb -> pullAvgRating();
             $movie = $omdb->getMovie($movieName);
             $movie = $omdb -> getReview($movieName);
+
             // Pass data to the view
             $this->view('omdb/result', ['movie' => $movie]);
         } else {

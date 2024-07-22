@@ -10,15 +10,15 @@ class Omdb extends Controller {
     public function search() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['movie_name'])) {
             $movieName = $_REQUEST['movie_name'];
-            $movie = $this->model('Movie');
-            
-            $movie = $movie->getMovie($movieName);
+            $omdb = $this->model('Movie');
 
+            $movie = $omdb->getMovie($movieName);
+            $movie = $omdb -> getReview($movieName);
             // Pass data to the view
             $this->view('omdb/result', ['movie' => $movie]);
         } else {
             // Redirect to the index page if not a POST request
-            header('Location: /');
+            header('Location: /omdb');
             exit;
         }
     }

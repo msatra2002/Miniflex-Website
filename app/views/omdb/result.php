@@ -47,6 +47,7 @@
                 <li><strong>Director:</strong> <?php echo htmlspecialchars($data['movie']['Director']); ?></li>
                 <li><strong>Actors:</strong> <?php echo htmlspecialchars($data['movie']['Actors']); ?></li>
                 <li><strong>Plot:</strong> <?php echo htmlspecialchars($data['movie']['Plot']); ?></li>
+                <li><strong>AI Review:</strong> <?php echo htmlspecialchars($_SESSION['review']);?></li>
             </ul>
         <?php else: ?>
             <p>Movie not found.</p>
